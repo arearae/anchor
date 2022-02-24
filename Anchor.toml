@@ -1,13 +1,13 @@
 [features]
 seeds = false
-[programs.localnet]
+[programs.devnet]
 monopoly = "rchGw7oZWwSq41eyXG3ofhzA3X4oJCqeRv2iAwteVxS"
 
 [registry]
 url = "https://anchor.projectserum.com"
 
 [provider]
-cluster = "localnet"
+cluster = "devnet"
 wallet = "/Users/arearae/.config/solana/id.json"
 
 [scripts]

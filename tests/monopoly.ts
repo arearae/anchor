@@ -6,7 +6,9 @@ import {TOKEN_PROGRAM_ID} from "@solana/spl-token";
 import {findGameAccountPDA, GameClient} from "../src/game";
 
 describe('monopoly', () => {
+  anchor.setProvider(anchor.Provider.env());
   const _provider = anchor.getProvider();
+  console.log(_provider)
 
   const gb = new GameClient(
       _provider.connection,
