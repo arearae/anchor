@@ -1,7 +1,7 @@
 [features]
 seeds = false
 [programs.localnet]
-monopoly = "rchaXdW2AzVBW4fmUomCCTQGs24CkyzLfQke3M68i1X"
+monopoly = "rchGw7oZWwSq41eyXG3ofhzA3X4oJCqeRv2iAwteVxS"
 
 [registry]
 url = "https://anchor.projectserum.com"
