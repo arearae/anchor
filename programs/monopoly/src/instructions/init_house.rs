@@ -44,7 +44,6 @@ pub fn handler(ctx: Context<InitHouse>, order: String, district_order: String) -
     house.level = 0;
     house.authority = ctx.accounts.authority.key();
     house.game = ctx.accounts.game.key();
-//
     msg!("house initialized");
     Ok(())
 }
