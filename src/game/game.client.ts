@@ -110,7 +110,8 @@ export class GameClient extends AccountUtils {
         owner: Keypair,
         authority: PublicKey,
         gameTokenSource: PublicKey,
-        gameTokenMint: PublicKey
+        gameTokenMint: PublicKey,
+        game: PublicKey
     ){
         const [gameStakeAccount, bump] = await findGameStakeAccountPDA(gameAccount, gameTokenMint);
         const [gameTokenPdaAta, bump1] = await findGameStakeTokenAccountPDA(gameAccount, gameTokenMint);
@@ -123,6 +124,7 @@ export class GameClient extends AccountUtils {
                 gameTokenSource,
                 gameTokenMint,
                 gameTokenPdaAta,
+                game,
                 owner: owner.publicKey,
                 authority,
                 tokenProgram: TOKEN_PROGRAM_ID,

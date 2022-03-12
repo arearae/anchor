@@ -29,4 +29,8 @@ pub mod monopoly {
     pub fn init_house(ctx: Context<InitHouse>, order: String, district_order: String) -> ProgramResult {
         instructions::init_house::handler(ctx, order, district_order)
     }
+
+    pub fn game_unstake_account(ctx: Context<GameUnstakeAccount>) -> ProgramResult {
+        instructions::game_unstake_account::handler(ctx)
+    }
 }

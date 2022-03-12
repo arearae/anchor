@@ -26,17 +26,16 @@ describe('monopoly', () => {
 
   it('Is initialized!', async () => {
     const tx = await gb.initGame(game, gameManager, gameManager);
-    const gameId = await gb.fetchGameAcc(game.publicKey);
-    console.log(gameId);
-    // const owner = await nw.createFundedWallet(10000 * LAMPORTS_PER_SOL);
+    // const gameId = await gb.fetchGameAcc(game.publicKey);
+    // console.log(gameId);
+    const owner = await nw.createFundedWallet(10000 * LAMPORTS_PER_SOL);
     // const owner2 = await nw.createFundedWallet(100 * LAMPORTS_PER_SOL);
     // const tx1 = await gb.initGameAccount(game.publicKey, owner, gameManager);
     // const tx2 = await gb.initGameAccount(game.publicKey, owner2, gameManager);
     // const pdas = await gb.fetchGameAccountByGame(game.publicKey);
     // const {tokenMint, tokenAcc} = await nw.createMintAndFundATA(owner.publicKey, new BN(1));
-    // console.log(pdas);
     // const [gameAccount1, _] = await findGameAccountPDA(game.publicKey, owner.publicKey);
-    // const tx3 = await gb.initGameStakeAccount(gameAccount1, owner, gameManager, tokenAcc, tokenMint);
+    // const tx3 = await gb.initGameStakeAccount(gameAccount1, owner, gameManager, tokenAcc, tokenMint, game.publicKey);
     // const gc = await gb.fetchGameStakeAccount(game.publicKey, owner.publicKey, tokenMint);
     // console.log(7777, gc)
     // const ga = await gb.fetchGameAccount(game.publicKey, owner.publicKey);

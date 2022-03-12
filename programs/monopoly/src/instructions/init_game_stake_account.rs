@@ -1,5 +1,5 @@
+use std::str::FromStr;
 use anchor_lang::prelude::*;
-use gem_common::*;
 use anchor_spl::token::{self, Mint, Token, TokenAccount, Transfer};
 
 use crate::state::*;
@@ -22,6 +22,9 @@ pub struct InitGameStakeAccount<'info> {
 
     #[account(mut)]
     pub game_token_source: Box<Account<'info, TokenAccount>>,
+
+    #[account(mut)]
+    pub game: Box<Account<'info, Game>>,
 
     pub game_token_mint: Box<Account<'info, Mint>>,
     #[account(init_if_needed,
@@ -71,15 +74,11 @@ pub fn handler(ctx: Context<InitGameStakeAccount>) -> ProgramResult {
     // record total number of vaults in bank's state
     let game_account = &mut ctx.accounts.game_account;
     let game_stake_account = &mut ctx.accounts.game_stake_account;
+    let game_token_mint = &ctx.accounts.game_token_mint;
+
     game_account.total_stake += 1;
-    let game_stake_account_seed = &[b"game_stake_account".as_ref(),
-        game_account.key().as_ref(),
-        game_token_mint.key().as_ref()];
-    let bump = *ctx.bumps.get("gameStakeAccount").unwrap();
-//    let game_account_address = game_account.key();
-//    let game_account_seed = &[game_account_address.as_ref()];
-//    let (authority, bump) = Pubkey::find_program_address(authority_seed, ctx.program_id);
-    game_stake_account.game = game_account.key();
+
+    game_stake_account.game = ctx.accounts.game.key();
     game_stake_account.game_token_mint = ctx.accounts.game_token_mint.key();
     game_stake_account.owner = ctx.accounts.owner.key();
     game_stake_account.game_token_source = ctx.accounts.game_token_source.key();
@@ -88,7 +87,6 @@ pub fn handler(ctx: Context<InitGameStakeAccount>) -> ProgramResult {
     game_stake_account.status = 0;
     game_stake_account.game_account = game_account.key();
     game_stake_account.authority = ctx.accounts.authority.key();
-//    game_stake_account.bump = *ctx.bumps.get("gameStakeAccount").unwrap();
     msg!("new game account founded by {}", &ctx.accounts.authority.key());
     Ok(())
 }
