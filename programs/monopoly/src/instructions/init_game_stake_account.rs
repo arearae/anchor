@@ -1,5 +1,5 @@
+use std::str::FromStr;
 use anchor_lang::prelude::*;
-use gem_common::*;
 use anchor_spl::token::{self, Mint, Token, TokenAccount, Transfer};
 
 use crate::state::*;
@@ -22,6 +22,9 @@ pub struct InitGameStakeAccount<'info> {
 
     #[account(mut)]
     pub game_token_source: Box<Account<'info, TokenAccount>>,
+
+    #[account(mut)]
+    pub game: Box<Account<'info, Game>>,
 
     pub game_token_mint: Box<Account<'info, Mint>>,
     #[account(init_if_needed,
@@ -71,8 +74,11 @@ pub fn handler(ctx: Context<InitGameStakeAccount>) -> ProgramResult {
     // record total number of vaults in bank's state
     let game_account = &mut ctx.accounts.game_account;
     let game_stake_account = &mut ctx.accounts.game_stake_account;
+    let game_token_mint = &ctx.accounts.game_token_mint;
+
     game_account.total_stake += 1;
-    game_stake_account.game = game_account.key();
+
+    game_stake_account.game = ctx.accounts.game.key();
     game_stake_account.game_token_mint = ctx.accounts.game_token_mint.key();
     game_stake_account.owner = ctx.accounts.owner.key();
     game_stake_account.game_token_source = ctx.accounts.game_token_source.key();
