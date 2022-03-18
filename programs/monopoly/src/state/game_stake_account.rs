@@ -20,7 +20,7 @@ pub struct GameStakeAccount {
 
     pub status: u16,
 
-    pub time: [u8; 32],
+    pub time: u64,
 
     pub authority_seed: Pubkey,
 
