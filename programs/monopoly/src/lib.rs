@@ -18,8 +18,8 @@ pub mod monopoly {
         instructions::init_game_account::handler(ctx)
     }
 
-    pub fn init_game_stake_account(ctx: Context<InitGameStakeAccount>, time: String) -> ProgramResult {
-        instructions::init_game_stake_account::handler(ctx, time)
+    pub fn init_game_stake_account(ctx: Context<InitGameStakeAccount>) -> ProgramResult {
+        instructions::init_game_stake_account::handler(ctx)
     }
 
     pub fn init_district(ctx: Context<InitDistrict>, order: String) -> ProgramResult {
