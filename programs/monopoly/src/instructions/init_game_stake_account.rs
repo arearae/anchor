@@ -66,7 +66,7 @@ impl<'info> InitGameStakeAccount<'info> {
     }
 }
 
-pub fn handler(ctx: Context<InitGameStakeAccount>, time: String) -> ProgramResult {
+pub fn handler(ctx: Context<InitGameStakeAccount>) -> ProgramResult {
     token::transfer(
         ctx.accounts
             .transfer_ctx(),
@@ -78,8 +78,8 @@ pub fn handler(ctx: Context<InitGameStakeAccount>, time: String) -> ProgramResul
     let game_token_mint = &ctx.accounts.game_token_mint;
 
     game_account.total_stake += 1;
-    let time_str = time.to_string();
-    let time_int = time_str.parse::<u64>().unwrap();
+//    let time_str = time.to_string();
+//    let time_int = time_str.parse::<u64>().unwrap();
 
     game_stake_account.game = ctx.accounts.game.key();
     game_stake_account.game_token_mint = ctx.accounts.game_token_mint.key();
@@ -91,7 +91,7 @@ pub fn handler(ctx: Context<InitGameStakeAccount>, time: String) -> ProgramResul
     game_stake_account.game_account = game_account.key();
     game_stake_account.authority = ctx.accounts.authority.key();
     game_stake_account.status = 1;
-    game_stake_account.time = time_int;
+//    game_stake_account.time = time_int;
 
     msg!("new game account founded by {}", &ctx.accounts.authority.key());
     Ok(())
