@@ -56,7 +56,6 @@ impl<'info> GameUnstakeAccount<'info> {
 }
 
 pub fn handler(ctx: Context<GameUnstakeAccount>) -> ProgramResult {
-    let game_stake_account = &mut ctx.accounts.game_stake_account;
     let game_token_pda_ata = &ctx.accounts.game_token_pda_ata;
 //    let seed = &[
 //        b"metadata".as_ref(),
@@ -90,6 +89,7 @@ pub fn handler(ctx: Context<GameUnstakeAccount>) -> ProgramResult {
             .with_signer(&[sign_seeds]),
         1,
     )?;
+    let game_stake_account = &mut ctx.accounts.game_stake_account;
     game_stake_account.status = 0;
     msg!("withdrawn from ${} gem box", game_token_pda_ata.key());
     Ok(())
