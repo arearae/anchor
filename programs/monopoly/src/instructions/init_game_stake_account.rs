@@ -84,7 +84,7 @@ pub fn handler(ctx: Context<InitGameStakeAccount>) -> ProgramResult {
     game_stake_account.game_token_source = ctx.accounts.game_token_source.key();
     game_stake_account.game_token_pda_ata = ctx.accounts.game_token_pda_ata.key();
     game_stake_account.money = 0;
-    game_stake_account.status = 0;
+    game_stake_account.status = 1;
     game_stake_account.game_account = game_account.key();
     game_stake_account.authority = ctx.accounts.authority.key();
     msg!("new game account founded by {}", &ctx.accounts.authority.key());

@@ -56,7 +56,7 @@ impl<'info> GameUnstakeAccount<'info> {
 }
 
 pub fn handler(ctx: Context<GameUnstakeAccount>) -> ProgramResult {
-    let game_stake_account = &ctx.accounts.game_stake_account;
+
     let game_token_pda_ata = &ctx.accounts.game_token_pda_ata;
 //    let seed = &[
 //        b"metadata".as_ref(),
@@ -65,7 +65,7 @@ pub fn handler(ctx: Context<GameUnstakeAccount>) -> ProgramResult {
 //    ];
 //
 //    let (metadata_addr, _bump) = Pubkey::find_program_address(seed, &metadata_program);
-    let program = Pubkey::from_str("rchGw7oZWwSq41eyXG3ofhzA3X4oJCqeRv2iAwteVxS").unwrap();
+    let program = Pubkey::from_str("monvVbcL8zas8HjPcx3FbHiAK4Nqi7VZrruM7gcyZin").unwrap();
     let game = &ctx.accounts.game;
     let owner = &*ctx.accounts.owner;
     let game_addr = game.key();
@@ -90,6 +90,8 @@ pub fn handler(ctx: Context<GameUnstakeAccount>) -> ProgramResult {
             .with_signer(&[sign_seeds]),
         1,
     )?;
+    let game_stake_account = &mut ctx.accounts.game_stake_account;
+    game_stake_account.status = 0;
     msg!("withdrawn from ${} gem box", game_token_pda_ata.key());
     Ok(())
 }
