@@ -64,7 +64,7 @@ pub fn handler(ctx: Context<GameUnstakeAccount>) -> ProgramResult {
 //    ];
 //
 //    let (metadata_addr, _bump) = Pubkey::find_program_address(seed, &metadata_program);
-    let program = Pubkey::from_str("rchGw7oZWwSq41eyXG3ofhzA3X4oJCqeRv2iAwteVxS").unwrap();
+    let program = Pubkey::from_str("monvVbcL8zas8HjPcx3FbHiAK4Nqi7VZrruM7gcyZin").unwrap();
     let game = &ctx.accounts.game;
     let owner = &*ctx.accounts.owner;
     let game_addr = game.key();
