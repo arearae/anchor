@@ -1,4 +1,5 @@
 use std::str::FromStr;
+use std::io::Write;
 use anchor_lang::prelude::*;
 use anchor_spl::token::{self, Mint, Token, TokenAccount, Transfer};
 
@@ -77,6 +78,8 @@ pub fn handler(ctx: Context<InitGameStakeAccount>) -> ProgramResult {
     let game_token_mint = &ctx.accounts.game_token_mint;
 
     game_account.total_stake += 1;
+//    let time_str = time.to_string();
+//    let time_int = time_str.parse::<u64>().unwrap();
 
     game_stake_account.game = ctx.accounts.game.key();
     game_stake_account.game_token_mint = ctx.accounts.game_token_mint.key();
@@ -87,6 +90,9 @@ pub fn handler(ctx: Context<InitGameStakeAccount>) -> ProgramResult {
     game_stake_account.status = 1;
     game_stake_account.game_account = game_account.key();
     game_stake_account.authority = ctx.accounts.authority.key();
+    game_stake_account.status = 1;
+//    game_stake_account.time = time_int;
+
     msg!("new game account founded by {}", &ctx.accounts.authority.key());
     Ok(())
 }

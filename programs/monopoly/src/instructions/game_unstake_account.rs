@@ -56,7 +56,6 @@ impl<'info> GameUnstakeAccount<'info> {
 }
 
 pub fn handler(ctx: Context<GameUnstakeAccount>) -> ProgramResult {
-
     let game_token_pda_ata = &ctx.accounts.game_token_pda_ata;
 //    let seed = &[
 //        b"metadata".as_ref(),
